@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Online Bookstore</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      #bookstore {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .book-card {
+        background-color: #ffffff;
+        width: 250px;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      }
+
+      .book-card img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+      }
+
+      .book-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 10px 0 5px;
+      }
+
+      .book-author {
+        color: #555;
+        font-size: 14px;
+      }
+
+      .book-price {
+        color: green;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Welcome to My Bookstore</h1>
+
+    <div id="bookstore">
+      <div class="book-card">
+        <img src="https://images-platform.99static.com//DVdRV5U4mxS9rlJpQyMtbl05LLY=/404x172:1456x1225/fit-in/500x500/projects-files/183/18364/1836425/e4190f79-e06d-4305-aff2-933124137728.jpg" alt="The Great Gatsby book cover">
+        <div class="book-title">The Great Gatsby</div>
+        <div class="book-author">by F. Scott Fitzgerald</div>
+        <div class="book-price">$10.99</div>
+      </div>
+
+      <div class="book-card">
+        <img src="https://images-platform.99static.com//stUY2We81Ot5_stCYoz5hW0sKHM=/0x0:2040x2043/fit-in/500x500/99designs-contests-attachments/149/149069/attachment_149069876" alt="1984 book cover">
+        <div class="book-title">1984</div>
+        <div class="book-author">by George Orwell</div>
+        <div class="book-price">$9.99</div>
+      </div>
+
+      <div class="book-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/To_Kill_a_Mockingbird_%28first_edition_cover%29.jpg" alt="To Kill a Mockingbird book cover">
+        <div class="book-title">To Kill a Mockingbird</div>
+        <div class="book-author">by Harper Lee</div>
+        <div class="book-price">$12.50</div>
+      </div>
+    </div>
+  </body>
+</html>

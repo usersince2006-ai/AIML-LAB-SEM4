@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Explore Japan - Travel Agency</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        line-height: 1.6;
+      }
+
+      h1, h2 {
+        color: #1a3d5d;
+      }
+
+      .packages ul {
+        list-style-type: circle;
+      }
+
+      .packages a {
+        color: darkred;
+        text-decoration: none;
+      }
+
+      .packages a:hover {
+        text-decoration: underline;
+      }
+
+      .itineraries {
+        display: flex;
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .card {
+        width: 250px;
+      }
+
+      .card img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+      }
+
+      .card p {
+        text-align: center;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Explore Japan</h1>
+
+    <p>
+      Discover the perfect blend of tradition and modern life. From ancient
+      temples to neon-lit cities, Japan offers unforgettable experiences for
+      every traveler.
+    </p>
+
+    <div class="packages">
+      <h2>Packages</h2>
+      <p>
+        Our travel packages are designed to give you a deep and authentic look
+        into Japanese culture, cuisine, and landscapes.
+      </p>
+
+      <ul>
+        <li><a href="#">City Explorer Tours</a></li>
+        <li><a href="#">Cultural Heritage Trips</a></li>
+        <li><a href="#">Nature & Mountain Escapes</a></li>
+      </ul>
+    </div>
+
+    <h2>Top Itineraries</h2>
+
+    <div class="itineraries">
+      <div class="card">
+        <img src="https://img.freepik.com/free-photo/aerial-view-tokyo-cityscape-with-fuji-mountain-japan_335224-148.jpg?semt=ais_hybrid&w=740&q=80" alt="Tokyo city skyline">
+        <p>Tokyo City Adventure</p>
+      </div>
+
+      <div class="card">
+        <img src="https://media3.thrillophilia.com/filestore/z9nwo9vxlqyfe67uluci6kh42bf1_sorasak-_UIN-pFfJ7c-unsplash.jpg?w=400&dpr=2" alt="Kyoto temples and shrines">
+        <p>Kyoto Cultural Tour</p>
+      </div>
+
+      <div class="card">
+        <img src="data:image/jpeg;base64,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" alt="Mount Fuji and Lake Kawaguchi">
+        <p>Mount Fuji Scenic Trip</p>
+      </div>
+    </div>
+  </body>
+</html>
