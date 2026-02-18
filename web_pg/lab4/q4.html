@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Changer</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+        .section { background: white; padding: 25px; margin: 20px 0; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #333; }
+        h2 { color: #667eea; margin-bottom: 15px; }
+        button { background: #667eea; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 5px; }
+        button:hover { background: #764ba2; }
+        .color-box { width: 200px; height: 100px; margin: 15px 0; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; transition: background 0.3s; background: #667eea; }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Event-Driven Programming</h1>
+    <div class="section">
+        <h2>4. Color Changer</h2>
+        <div class="color-box" id="colorBox">Hover & Click Me!</div>
+        <button onclick="changeColor()">Random Color</button>
+    </div>
+    <script>
+        const colorBox = document.getElementById('colorBox');
+        function changeColor() {
+            const color = '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
+            colorBox.style.background = color;
+            colorBox.textContent = color;
+        }
+        colorBox.addEventListener('mouseover', () => colorBox.style.transform = 'scale(1.05)');
+        colorBox.addEventListener('mouseout', () => colorBox.style.transform = 'scale(1)');
+    </script>
+</body>
+</html>
