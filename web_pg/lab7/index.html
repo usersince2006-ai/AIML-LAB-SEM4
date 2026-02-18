@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Portfolio Components</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; }
+        .header { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 40px 20px; text-align: center; }
+        .header h1 { font-size: 2.5em; }
+        .section { max-width: 900px; margin: 30px auto; padding: 25px; background: white; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .section h2 { color: #667eea; border-bottom: 2px solid #667eea; padding-bottom: 10px; margin-bottom: 20px; }
+        .skills-grid { display: flex; gap: 15px; flex-wrap: wrap; }
+        .skill-badge { background: #667eea; color: white; padding: 8px 18px; border-radius: 20px; font-size: 0.95em; }
+        .project-card { border: 1px solid #eee; border-radius: 10px; padding: 20px; margin: 10px 0; }
+        .project-card h3 { color: #333; }
+        .project-card p { color: #666; margin-top: 8px; }
+        .footer { text-align: center; padding: 20px; background: #333; color: white; margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        // Functional Component: Header
+        function Header({ name, title }) {
+            return (
+                <header className="header">
+                    <h1>{name}</h1>
+                    <p>{title}</p>
+                </header>
+            );
+        }
+        
+        // Functional Component: About
+        function About() {
+            return (
+                <section className="section">
+                    <h2>About Me</h2>
+                    <p>I am a second-year AIML engineering student at SFIT, passionate about machine learning and web development.</p>
+                </section>
+            );
+        }
+        
+        // Functional Component: Skills
+        function Skills({ skills }) {
+            return (
+                <section className="section">
+                    <h2>Skills</h2>
+                    <div className="skills-grid">
+                        {skills.map((skill, i) => <span key={i} className="skill-badge">{skill}</span>)}
+                    </div>
+                </section>
+            );
+        }
+        
+        // Class Component: Projects
+        class Projects extends React.Component {
+            render() {
+                return (
+                    <section className="section">
+                        <h2>Projects</h2>
+                        {this.props.projects.map((proj, i) => (
+                            <div key={i} className="project-card">
+                                <h3>{proj.name}</h3>
+                                <p>{proj.description}</p>
+                                <small>Tech: {proj.tech}</small>
+                            </div>
+                        ))}
+                    </section>
+                );
+            }
+        }
+        
+        // Functional Component: Footer
+        function Footer() {
+            return <footer className="footer"><p>&copy; 2026 Tony Rodrigues</p></footer>;
+        }
+        
+        // Main App
+        function App() {
+            const skills = ['Python', 'Machine Learning', 'React', 'HTML/CSS', 'JavaScript', 'SQL', 'NumPy', 'Pandas'];
+            const projects = [
+                { name: 'Disease Predictor', description: 'ML-based disease prediction using Naive Bayes and Neural Networks.', tech: 'Python, Scikit-learn' },
+                { name: 'Portfolio Website', description: 'Responsive personal portfolio with React components.', tech: 'React, HTML, CSS' },
+                { name: 'Data Pipeline', description: 'End-to-end ML pipeline with preprocessing and evaluation.', tech: 'Python, Pandas, Sklearn' }
+            ];
+            
+            return (
+                <div>
+                    <Header name="Tony Rodrigues" title="SE AIML Student | Web Developer" />
+                    <About />
+                    <Skills skills={skills} />
+                    <Projects projects={projects} />
+                    <Footer />
+                </div>
+            );
+        }
+        
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+</html>
