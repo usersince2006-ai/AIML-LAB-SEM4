@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Switzerland - Alpine Adventures</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://via.placeholder.com/1920x600/87CEEB/ffffff?text=Swiss+Alps') center/cover;
+            color: white;
+            text-align: center;
+            padding: 150px 20px;
+            position: relative;
+        }
+        header h1 {
+            font-size: 4em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+        header p {
+            font-size: 1.5em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .intro {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .intro h2 {
+            color: #00796B;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .intro p {
+            font-size: 1.2em;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        .destinations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        .dest-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+            border-top: 5px solid #00796B;
+        }
+        .dest-card:hover {
+            transform: translateY(-10px);
+        }
+        .dest-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .dest-card-content {
+            padding: 25px;
+        }
+        .dest-card h3 {
+            color: #00796B;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        .dest-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .dest-card ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        .dest-card ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .dest-card ul li:before {
+            content: "✓ ";
+            color: #26A69A;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .price-tag {
+            background: #00796B;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #00796B;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: #004D40;
+            transform: scale(1.05);
+        }
+        .features {
+            background: #E0F2F1;
+            padding: 50px 20px;
+            margin-top: 50px;
+        }
+        .features h2 {
+            text-align: center;
+            color: #00796B;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .feature-item {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+        }
+        .feature-item h3 {
+            color: #00796B;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🏔️ Discover Switzerland</h1>
+        <p>Experience the Magic of the Swiss Alps</p>
+    </header>
+
+    <div class="container">
+        <div class="intro">
+            <h2>Welcome to Alpine Adventures</h2>
+            <p>Switzerland is a landlocked mountainous country in Central Europe, known for its stunning alpine scenery, 
+               pristine lakes, charming villages, and world-class chocolate. From the majestic Matterhorn to the serene 
+               Lake Geneva, Switzerland offers unforgettable experiences for every traveler.</p>
+        </div>
+
+        <h2 style="text-align: center; color: #00796B; font-size: 2.2em; margin-bottom: 30px;">
+            Featured Tour Packages
+        </h2>
+
+        <div class="destinations">
+            <div class="dest-card">
+                <img src="https://via.placeholder.com/400x250/4CAF50/ffffff?text=Zurich" alt="Zurich">
+                <div class="dest-card-content">
+                    <h3>Zurich City Explorer</h3>
+                    <span class="price-tag">₹89,999</span>
+                    <p>Discover Switzerland's largest city, blending old-world charm with modern sophistication.</p>
+                    <ul>
+                        <li>5 Days / 4 Nights</li>
+                        <li>4-Star Hotel Accommodation</li>
+                        <li>City Tour & Museum Visits</li>
+                        <li>Lake Zurich Cruise</li>
+                        <li>Daily Breakfast & Dinner</li>
+                    </ul>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <img src="https://via.placeholder.com/400x250/2196F3/ffffff?text=Interlaken" alt="Interlaken">
+                <div class="dest-card-content">
+                    <h3>Interlaken Adventure</h3>
+                    <span class="price-tag">₹1,25,999</span>
+                    <p>Nestled between two lakes with breathtaking mountain views and thrilling activities.</p>
+                    <ul>
+                        <li>7 Days / 6 Nights</li>
+                        <li>Luxury Mountain Resort</li>
+                        <li>Paragliding Experience</li>
+                        <li>Jungfraujoch Excursion</li>
+                        <li>All Meals Included</li>
+                    </ul>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <img src="https://via.placeholder.com/400x250/FF5722/ffffff?text=Geneva" alt="Geneva">
+                <div class="dest-card-content">
+                    <h3>Geneva Getaway</h3>
+                    <span class="price-tag">₹95,999</span>
+                    <p>Explore the international city by the lake, home to UN headquarters and luxury watches.</p>
+                    <ul>
+                        <li>6 Days / 5 Nights</li>
+                        <li>Lakeside Hotel</li>
+                        <li>CERN Tour</li>
+                        <li>Watch Factory Visit</li>
+                        <li>Mont Blanc Cable Car</li>
+                    </ul>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="features">
+        <h2>Why Choose Alpine Adventures?</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div style="font-size: 3em;">✈️</div>
+                <h3>Visa Assistance</h3>
+                <p>Complete support for Schengen visa application and documentation</p>
+            </div>
+            <div class="feature-item">
+                <div style="font-size: 3em;">🏨</div>
+                <h3>Premium Stays</h3>
+                <p>Handpicked 4 & 5-star hotels with stunning views</p>
+            </div>
+            <div class="feature-item">
+                <div style="font-size: 3em;">🚐</div>
+                <h3>Private Transport</h3>
+                <p>Comfortable AC vehicles with experienced drivers</p>
+            </div>
+            <div class="feature-item">
+                <div style="font-size: 3em;">👨‍✈️</div>
+                <h3>Expert Guides</h3>
+                <p>Knowledgeable local guides who speak English fluently</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
