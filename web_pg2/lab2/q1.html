@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Business Card</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .business-card {
+      width: 400px;
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .business-card:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 120px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      z-index: 0;
+    }
+    .profile-section {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 20px;
+    }
+    .profile-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 5px solid white;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+    h1 {
+      font-size: 2em;
+      color: #2c3e50;
+      margin-bottom: 5px;
+    }
+    .title {
+      color: #7f8c8d;
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+    .company {
+      color: #667eea;
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-bottom: 25px;
+    }
+    .contact-info {
+      text-align: left;
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin: 12px 0;
+      color: #34495e;
+    }
+    .contact-item span:first-child {
+      font-size: 1.2em;
+      margin-right: 12px;
+      min-width: 25px;
+    }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2em;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+    }
+    .social-icon:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="business-card">
+    <div class="profile-section">
+      <img src="https://via.placeholder.com/120/667eea/ffffff?text=SK" alt="Profile" class="profile-image">
+      <h1>Sophia Kumar</h1>
+      <p class="title">Senior Product Designer</p>
+      <p class="company">TechVision Studios</p>
+    </div>
+    
+    <div class="contact-info">
+      <div class="contact-item">
+        <span>📧</span>
+        <span>sophia.kumar@techvision.com</span>
+      </div>
+      <div class="contact-item">
+        <span>📱</span>
+        <span>+91 98765 43210</span>
+      </div>
+      <div class="contact-item">
+        <span>🌐</span>
+        <span>www.sophiakumar.design</span>
+      </div>
+      <div class="contact-item">
+        <span>📍</span>
+        <span>Mumbai, Maharashtra, India</span>
+      </div>
+    </div>
+    
+    <div class="social-links">
+      <a href="#" class="social-icon">in</a>
+      <a href="#" class="social-icon">📘</a>
+      <a href="#" class="social-icon">🐦</a>
+      <a href="#" class="social-icon">📷</a>
+    </div>
+  </div>
+</body>
+</html>

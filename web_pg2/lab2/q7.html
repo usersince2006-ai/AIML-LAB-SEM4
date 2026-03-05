@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing Plans</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 50px 20px;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 60px;
+    }
+    .header h1 {
+      font-size: 3.5em;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    .header p {
+      font-size: 1.4em;
+      opacity: 0.95;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .pricing-card {
+      background: white;
+      border-radius: 20px;
+      padding: 40px 30px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+    .pricing-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+    .pricing-card.featured {
+      border: 3px solid #FFD700;
+      transform: scale(1.05);
+    }
+    .featured-badge {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+      color: #000;
+      padding: 8px 25px;
+      border-radius: 25px;
+      font-weight: bold;
+      font-size: 0.9em;
+    }
+    .plan-icon {
+      font-size: 3.5em;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .plan-name {
+      text-align: center;
+      font-size: 2em;
+      color: #2c3e50;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+    .plan-price {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .price-amount {
+      font-size: 3.5em;
+      color: #134e5e;
+      font-weight: bold;
+    }
+    .price-period {
+      color: #7f8c8d;
+      font-size: 1.1em;
+    }
+    .plan-features {
+      list-style: none;
+      margin-bottom: 30px;
+    }
+    .plan-features li {
+      padding: 12px 0;
+      border-bottom: 1px solid #ecf0f1;
+      color: #34495e;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .plan-features li:last-child {
+      border-bottom: none;
+    }
+    .feature-icon {
+      color: #71b280;
+      font-weight: bold;
+    }
+    .feature-icon.cross {
+      color: #e74c3c;
+    }
+    .plan-button {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .plan-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(19, 78, 94, 0.3);
+    }
+    .pricing-card.featured .plan-button {
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+      color: #000;
+    }
+    @media (max-width: 768px) {
+      .pricing-card.featured {
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>💎 Choose Your Plan</h1>
+      <p>Select the perfect plan for your needs</p>
+    </div>
+    
+    <div class="pricing-grid">
+      <!-- Basic Plan -->
+      <div class="pricing-card">
+        <div class="plan-icon">🌱</div>
+        <h2 class="plan-name">Basic</h2>
+        <div class="plan-price">
+          <div class="price-amount">₹499</div>
+          <div class="price-period">/month</div>
+        </div>
+        <ul class="plan-features">
+          <li><span class="feature-icon">✓</span> 10 GB Storage</li>
+          <li><span class="feature-icon">✓</span> 5 Users</li>
+          <li><span class="feature-icon">✓</span> Email Support</li>
+          <li><span class="feature-icon">✓</span> Basic Analytics</li>
+          <li><span class="feature-icon cross">✗</span> Custom Domain</li>
+          <li><span class="feature-icon cross">✗</span> Priority Support</li>
+          <li><span class="feature-icon cross">✗</span> Advanced Security</li>
+        </ul>
+        <button class="plan-button">Get Started</button>
+      </div>
+      
+      <!-- Professional Plan (Featured) -->
+      <div class="pricing-card featured">
+        <div class="featured-badge">⭐ MOST POPULAR</div>
+        <div class="plan-icon">🚀</div>
+        <h2 class="plan-name">Professional</h2>
+        <div class="plan-price">
+          <div class="price-amount">₹1,299</div>
+          <div class="price-period">/month</div>
+        </div>
+        <ul class="plan-features">
+          <li><span class="feature-icon">✓</span> 100 GB Storage</li>
+          <li><span class="feature-icon">✓</span> 25 Users</li>
+          <li><span class="feature-icon">✓</span> Priority Email Support</li>
+          <li><span class="feature-icon">✓</span> Advanced Analytics</li>
+          <li><span class="feature-icon">✓</span> Custom Domain</li>
+          <li><span class="feature-icon">✓</span> 24/7 Phone Support</li>
+          <li><span class="feature-icon cross">✗</span> White Label</li>
+        </ul>
+        <button class="plan-button">Get Started</button>
+      </div>
+      
+      <!-- Enterprise Plan -->
+      <div class="pricing-card">
+        <div class="plan-icon">👑</div>
+        <h2 class="plan-name">Enterprise</h2>
+        <div class="plan-price">
+          <div class="price-amount">₹2,999</div>
+          <div class="price-period">/month</div>
+        </div>
+        <ul class="plan-features">
+          <li><span class="feature-icon">✓</span> Unlimited Storage</li>
+          <li><span class="feature-icon">✓</span> Unlimited Users</li>
+          <li><span class="feature-icon">✓</span> Dedicated Account Manager</li>
+          <li><span class="feature-icon">✓</span> Custom Analytics</li>
+          <li><span class="feature-icon">✓</span> Multiple Custom Domains</li>
+          <li><span class="feature-icon">✓</span> Priority 24/7 Support</li>
+          <li><span class="feature-icon">✓</span> White Label Solution</li>
+        </ul>
+        <button class="plan-button">Contact Sales</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

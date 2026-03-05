@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confidential Email</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(135deg, #e94057 0%, #f27121 100%);
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .email-container {
+      width: 700px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+    }
+    .email-header {
+      background: linear-gradient(135deg, #e94057 0%, #f27121 100%);
+      color: white;
+      padding: 25px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .email-header h1 {
+      font-size: 1.8em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .confidential-badge {
+      background: rgba(255,255,255,0.3);
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 0.8em;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .email-meta {
+      background: #f8f9fa;
+      padding: 25px 30px;
+      border-bottom: 1px solid #dee2e6;
+    }
+    .meta-row {
+      display: flex;
+      margin-bottom: 15px;
+      align-items: center;
+    }
+    .meta-row:last-child {
+      margin-bottom: 0;
+    }
+    .meta-label {
+      font-weight: bold;
+      color: #495057;
+      min-width: 80px;
+    }
+    .meta-value {
+      color: #212529;
+    }
+    .priority-tag {
+      background: #dc3545;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 15px;
+      font-size: 0.85em;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+    .email-body {
+      padding: 30px;
+    }
+    .warning-box {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 15px;
+      margin-bottom: 25px;
+      border-radius: 5px;
+    }
+    .warning-box strong {
+      color: #856404;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 5px;
+    }
+    .warning-box p {
+      color: #856404;
+      font-size: 0.95em;
+      margin: 0;
+    }
+    .email-content {
+      color: #212529;
+      line-height: 1.8;
+      font-size: 1.05em;
+    }
+    .email-content p {
+      margin-bottom: 15px;
+    }
+    .email-content strong {
+      color: #e94057;
+    }
+    .attachments {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 25px;
+    }
+    .attachments h3 {
+      color: #495057;
+      margin-bottom: 15px;
+      font-size: 1.1em;
+    }
+    .attachment-item {
+      background: white;
+      padding: 12px 15px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid #dee2e6;
+    }
+    .attachment-icon {
+      font-size: 1.5em;
+    }
+    .attachment-info {
+      flex: 1;
+    }
+    .attachment-name {
+      font-weight: 600;
+      color: #212529;
+    }
+    .attachment-size {
+      font-size: 0.85em;
+      color: #6c757d;
+    }
+    .email-footer {
+      background: #e9ecef;
+      padding: 20px 30px;
+      text-align: center;
+      color: #6c757d;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <div class="email-header">
+      <h1>
+        🔒 Confidential Email
+      </h1>
+      <div class="confidential-badge">
+        ⚠️ CONFIDENTIAL
+      </div>
+    </div>
+    
+    <div class="email-meta">
+      <div class="meta-row">
+        <span class="meta-label">From:</span>
+        <span class="meta-value">Sarah Johnson &lt;s.johnson@techcorp.com&gt;</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-label">To:</span>
+        <span class="meta-value">Executive Team &lt;exec-team@techcorp.com&gt;</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-label">Subject:</span>
+        <span class="meta-value">
+          <strong>Q4 Strategic Initiative - Confidential</strong>
+          <span class="priority-tag">HIGH PRIORITY</span>
+        </span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-label">Date:</span>
+        <span class="meta-value">March 5, 2026, 10:30 AM</span>
+      </div>
+    </div>
+    
+    <div class="email-body">
+      <div class="warning-box">
+        <strong>⚠️ CONFIDENTIALITY NOTICE</strong>
+        <p>This email contains sensitive information. Please do not forward or share without explicit authorization.</p>
+      </div>
+      
+      <div class="email-content">
+        <p>Dear Executive Team,</p>
+        
+        <p>I hope this message finds you well. I am writing to share critical updates regarding our <strong>Q4 Strategic Initiative</strong> that requires immediate attention and absolute confidentiality.</p>
+        
+        <p>Following our recent board meeting, we have identified several key opportunities for market expansion. The attached documents outline our <strong>competitive analysis</strong> and <strong>proposed acquisition targets</strong>.</p>
+        
+        <p><strong>Key Points:</strong></p>
+        <ul style="margin-left: 20px; margin-bottom: 15px;">
+          <li>Target market valuation: $2.5B</li>
+          <li>Proposed timeline: Q4 2026 - Q1 2027</li>
+          <li>Estimated investment: $350M</li>
+          <li>Expected ROI: 45% within 18 months</li>
+        </ul>
+        
+        <p>Please review the attached materials before our strategy session scheduled for <strong>Friday, March 8th at 2:00 PM</strong>. Your insights will be invaluable as we finalize our approach.</p>
+        
+        <p>This information is strictly confidential and should not be discussed outside the executive team until official announcement.</p>
+        
+        <p>Best regards,<br>
+        <strong>Sarah Johnson</strong><br>
+        Chief Strategy Officer<br>
+        TechCorp International</p>
+      </div>
+      
+      <div class="attachments">
+        <h3>📎 Attachments (3)</h3>
+        <div class="attachment-item">
+          <span class="attachment-icon">📄</span>
+          <div class="attachment-info">
+            <div class="attachment-name">Q4_Strategic_Plan_CONFIDENTIAL.pdf</div>
+            <div class="attachment-size">2.4 MB</div>
+          </div>
+        </div>
+        <div class="attachment-item">
+          <span class="attachment-icon">📊</span>
+          <div class="attachment-info">
+            <div class="attachment-name">Market_Analysis_Report.xlsx</div>
+            <div class="attachment-size">1.8 MB</div>
+          </div>
+        </div>
+        <div class="attachment-item">
+          <span class="attachment-icon">📈</span>
+          <div class="attachment-info">
+            <div class="attachment-name">Financial_Projections_2026.xlsx</div>
+            <div class="attachment-size">956 KB</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="email-footer">
+      This email and any attachments are confidential and may contain privileged information.
+    </div>
+  </div>
+</body>
+</html>
