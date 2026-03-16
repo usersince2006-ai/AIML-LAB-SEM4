@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookHaven - Online Bookstore</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8;
+        }
+        header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2a5298 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .book-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border-top: 4px solid #2a5298;
+        }
+        .book-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(42, 82, 152, 0.2);
+        }
+        .book-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .book-card h3 {
+            color: #1e3a5f;
+            margin-bottom: 8px;
+            font-size: 1.4em;
+        }
+        .book-card .author {
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        .book-card .price {
+            color: #16a085;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .book-card p {
+            color: #34495e;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #1e3a5f 0%, #2a5298 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(42, 82, 152, 0.4);
+        }
+        .rating {
+            color: #f39c12;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📚 BookHaven</h1>
+        <p>Your Gateway to Infinite Stories</p>
+    </header>
+
+    <div class="container">
+        <h2 style="text-align: center; color: #1e3a5f; margin-bottom: 20px;">Featured Books</h2>
+        
+        <div class="books-grid">
+            <div class="book-card">
+                <img src="https://via.placeholder.com/250x350/3498db/ffffff?text=Atomic+Habits" alt="Atomic Habits">
+                <h3>Atomic Habits</h3>
+                <p class="author">by James Clear</p>
+                <div class="rating">⭐⭐⭐⭐⭐ (4.8/5)</div>
+                <p class="price">₹499</p>
+                <p>Transform your life with tiny changes that deliver remarkable results. Learn how to build good habits and break bad ones.</p>
+                <a href="#" class="btn">Add to Cart</a>
+            </div>
+
+            <div class="book-card">
+                <img src="https://via.placeholder.com/250x350/e74c3c/ffffff?text=Sapiens" alt="Sapiens">
+                <h3>Sapiens</h3>
+                <p class="author">by Yuval Noah Harari</p>
+                <div class="rating">⭐⭐⭐⭐⭐ (4.9/5)</div>
+                <p class="price">₹599</p>
+                <p>A brief history of humankind from the Stone Age to the modern age, exploring how Homo sapiens came to dominate the world.</p>
+                <a href="#" class="btn">Add to Cart</a>
+            </div>
+
+            <div class="book-card">
+                <img src="https://via.placeholder.com/250x350/2ecc71/ffffff?text=Think+Again" alt="Think Again">
+                <h3>Think Again</h3>
+                <p class="author">by Adam Grant</p>
+                <div class="rating">⭐⭐⭐⭐ (4.6/5)</div>
+                <p class="price">₹450</p>
+                <p>The power of knowing what you don't know and the joy of being wrong. Discover how rethinking can lead to excellence.</p>
+                <a href="#" class="btn">Add to Cart</a>
+            </div>
+
+            <div class="book-card">
+                <img src="https://via.placeholder.com/250x350/f39c12/ffffff?text=The+Alchemist" alt="The Alchemist">
+                <h3>The Alchemist</h3>
+                <p class="author">by Paulo Coelho</p>
+                <div class="rating">⭐⭐⭐⭐⭐ (4.7/5)</div>
+                <p class="price">₹350</p>
+                <p>A magical fable about following your dreams. Join Santiago on his journey to find treasure and discover his personal legend.</p>
+                <a href="#" class="btn">Add to Cart</a>
+            </div>
+
+            <div class="book-card">
+                <img src="https://via.placeholder.com/250x350/9b59b6/ffffff?text=Deep+Work" alt="Deep Work">
+                <h3>Deep Work</h3>
+                <p class="author">by Cal Newport</p>
+                <div class="rating">⭐⭐⭐⭐ (4.5/5)</div>
+                <p class="price">₹425</p>
+                <p>Rules for focused success in a distracted world. Master the art of deep work and produce at an elite level.</p>
+                <a href="#" class="btn">Add to Cart</a>
+            </div>
+
+            <div class="book-card">
+                <img src="https://via.placeholder.com/250x350/1abc9c/ffffff?text=1984" alt="1984">
+                <h3>1984</h3>
+                <p class="author">by George Orwell</p>
+                <div class="rating">⭐⭐⭐⭐⭐ (4.9/5)</div>
+                <p class="price">₹299</p>
+                <p>A dystopian classic about totalitarianism and the dangers of government surveillance. More relevant than ever before.</p>
+                <a href="#" class="btn">Add to Cart</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

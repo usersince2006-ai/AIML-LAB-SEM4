@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poker Hand - Playing Cards</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: linear-gradient(135deg, #0F2027 0%, #203A43 50%, #2C5364 100%);
+            font-family: 'Arial', sans-serif;
+            padding: 50px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        h1 {
+            color: white;
+            font-size: 3.5em;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .subtitle {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.3em;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        #playing-cards {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            perspective: 1000px;
+        }
+        .card {
+            width: 180px;
+            height: 250px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        .card:hover {
+            transform: translateY(-20px) rotateY(10deg);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+        }
+        .card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 100%);
+            border-radius: 15px;
+            pointer-events: none;
+        }
+        .card .left,
+        .card .right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        .card .left {
+            align-self: flex-start;
+        }
+        .card .right {
+            align-self: flex-end;
+            transform: rotate(180deg);
+        }
+        .card .middle {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .rank {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .suit {
+            font-size: 1.8em;
+        }
+        .suit-large {
+            font-size: 6em;
+        }
+        .hearts .rank,
+        .hearts .suit,
+        .hearts .suit-large {
+            color: #e74c3c;
+        }
+        .diamonds .rank,
+        .diamonds .suit,
+        .diamonds .suit-large {
+            color: #e74c3c;
+        }
+        .spades .rank,
+        .spades .suit,
+        .spades .suit-large {
+            color: #2c3e50;
+        }
+        .clubs .rank,
+        .clubs .suit,
+        .clubs .suit-large {
+            color: #2c3e50;
+        }
+        .hand-info {
+            text-align: center;
+            margin-top: 40px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            border-radius: 15px;
+            color: white;
+        }
+        .hand-info h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+        .hand-info p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        @media (max-width: 768px) {
+            #playing-cards {
+                gap: 15px;
+            }
+            .card {
+                width: 140px;
+                height: 200px;
+                padding: 15px;
+            }
+            .suit-large {
+                font-size: 4em !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>🃏 Poker Hand</h1>
+    <p class="subtitle">Royal Flush - The Best Hand in Poker!</p>
+    
+    <div id="playing-cards">
+        <!-- Ace of Hearts -->
+        <div class="card hearts">
+            <div class="left">
+                <div class="rank">A</div>
+                <div class="suit">♥</div>
+            </div>
+            <div class="middle">
+                <div class="suit-large">♥</div>
+            </div>
+            <div class="right">
+                <div class="rank">A</div>
+                <div class="suit">♥</div>
+            </div>
+        </div>
+
+        <!-- King of Hearts -->
+        <div class="card hearts">
+            <div class="left">
+                <div class="rank">K</div>
+                <div class="suit">♥</div>
+            </div>
+            <div class="middle">
+                <div class="suit-large">♥</div>
+            </div>
+            <div class="right">
+                <div class="rank">K</div>
+                <div class="suit">♥</div>
+            </div>
+        </div>
+
+        <!-- Queen of Hearts -->
+        <div class="card hearts">
+            <div class="left">
+                <div class="rank">Q</div>
+                <div class="suit">♥</div>
+            </div>
+            <div class="middle">
+                <div class="suit-large">♥</div>
+            </div>
+            <div class="right">
+                <div class="rank">Q</div>
+                <div class="suit">♥</div>
+            </div>
+        </div>
+
+        <!-- Jack of Hearts -->
+        <div class="card hearts">
+            <div class="left">
+                <div class="rank">J</div>
+                <div class="suit">♥</div>
+            </div>
+            <div class="middle">
+                <div class="suit-large">♥</div>
+            </div>
+            <div class="right">
+                <div class="rank">J</div>
+                <div class="suit">♥</div>
+            </div>
+        </div>
+
+        <!-- 10 of Hearts -->
+        <div class="card hearts">
+            <div class="left">
+                <div class="rank">10</div>
+                <div class="suit">♥</div>
+            </div>
+            <div class="middle">
+                <div class="suit-large">♥</div>
+            </div>
+            <div class="right">
+                <div class="rank">10</div>
+                <div class="suit">♥</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hand-info">
+        <h2>🏆 Royal Flush!</h2>
+        <p>A♥ K♥ Q♥ J♥ 10♥ - The highest ranking hand in poker</p>
+    </div>
+</body>
+</html>

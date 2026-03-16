@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chicken Curry Recipe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #FFF8F0;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        header h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .recipe-meta {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+        .hero-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        h2 {
+            color: #E63946;
+            font-size: 2.2em;
+            margin: 40px 0 20px;
+            border-bottom: 3px solid #FF6B35;
+            padding-bottom: 10px;
+        }
+        .ingredients {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .ingredients ul {
+            columns: 2;
+            column-gap: 40px;
+            list-style: none;
+        }
+        .ingredients li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            line-height: 1.6;
+        }
+        .ingredients li:before {
+            content: "🔸 ";
+            color: #FF6B35;
+            font-size: 0.8em;
+        }
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 30px 0;
+        }
+        .step-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .step-card:hover {
+            transform: translateY(-8px);
+        }
+        .step-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .step-caption {
+            padding: 15px;
+            text-align: center;
+            color: #E63946;
+            font-weight: bold;
+            background: #FFF8F0;
+        }
+        .instructions {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin: 30px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .instructions ol {
+            counter-reset: step-counter;
+            list-style: none;
+        }
+        .instructions li {
+            position: relative;
+            padding: 20px 0 20px 60px;
+            border-left: 3px solid #FF6B35;
+            margin-left: 25px;
+            line-height: 1.8;
+        }
+        .instructions li:before {
+            content: counter(step-counter);
+            counter-increment: step-counter;
+            position: absolute;
+            left: -25px;
+            top: 15px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            box-shadow: 0 3px 10px rgba(255, 107, 53, 0.3);
+        }
+        .note {
+            background: linear-gradient(135deg, #FFEBEE 0%, #FFCDD2 100%);
+            border-left: 5px solid #E63946;
+            padding: 25px;
+            margin: 40px 0;
+            border-radius: 8px;
+            font-size: 1.1em;
+        }
+        .note strong {
+            color: #E63946;
+            font-size: 1.2em;
+        }
+        @media (max-width: 768px) {
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+            .ingredients ul {
+                columns: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🍛 Authentic Chicken Curry</h1>
+        <p class="recipe-meta">Prep Time: 20 minutes | Cook Time: 40 minutes | Serves: 4 people</p>
+    </header>
+
+    <img src="https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=1920&q=80" alt="Delicious Chicken Curry" class="hero-image">
+
+    <div class="container">
+        <h2>📋 Ingredients</h2>
+        <div class="ingredients">
+            <ul>
+                <li>500g chicken (cut into pieces)</li>
+                <li>2 large onions (finely chopped)</li>
+                <li>3 tomatoes (pureed)</li>
+                <li>2 tablespoons ginger-garlic paste</li>
+                <li>2 green chilies (slit)</li>
+                <li>1 cup yogurt</li>
+                <li>2 tablespoons curry powder</li>
+                <li>1 teaspoon turmeric powder</li>
+                <li>1 teaspoon red chili powder</li>
+                <li>1 teaspoon garam masala</li>
+                <li>3 tablespoons cooking oil</li>
+                <li>Fresh coriander leaves</li>
+                <li>Salt to taste</li>
+            </ul>
+        </div>
+
+        <h2>🖼️ Visual Guide</h2>
+        <div class="steps-grid">
+            <div class="step-card">
+                <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&q=80" alt="Fresh Ingredients" class="step-image">
+                <p class="step-caption">Fresh ingredients ready</p>
+            </div>
+            <div class="step-card">
+                <img src="https://images.unsplash.com/photo-1596797038530-2c107229654b?w=400&q=80" alt="Marinated Chicken" class="step-image">
+                <p class="step-caption">Marinated chicken pieces</p>
+            </div>
+            <div class="step-card">
+                <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&q=80" alt="Cooking Spices" class="step-image">
+                <p class="step-caption">Aromatic spices cooking</p>
+            </div>
+        </div>
+
+        <h2>👨‍🍳 Cooking Instructions</h2>
+        <div class="instructions">
+            <ol>
+                <li><strong>Marinate the chicken:</strong> Mix chicken with yogurt, turmeric, and salt. Let it marinate for 15 minutes.</li>
+                <li><strong>Heat oil:</strong> In a large pot, heat oil over medium flame until shimmering.</li>
+                <li><strong>Sauté aromatics:</strong> Add chopped onions and cook until golden brown (about 8-10 minutes).</li>
+                <li><strong>Add spices:</strong> Stir in ginger-garlic paste and green chilies. Cook for 2 minutes until fragrant.</li>
+                <li><strong>Add tomatoes:</strong> Pour in tomato puree and cook until oil separates (about 5 minutes).</li>
+                <li><strong>Add curry powder:</strong> Mix in curry powder, red chili powder, and cook for 1 minute.</li>
+                <li><strong>Cook chicken:</strong> Add marinated chicken and mix well. Cook on high heat for 5 minutes.</li>
+                <li><strong>Simmer:</strong> Add 1 cup water, cover, and simmer for 25 minutes until chicken is fully cooked.</li>
+                <li><strong>Finish:</strong> Sprinkle garam masala and garnish with fresh coriander leaves.</li>
+                <li><strong>Serve hot:</strong> Enjoy with naan bread, rice, or roti.</li>
+            </ol>
+        </div>
+
+        <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=1920&q=80" alt="Final Chicken Curry Dish" class="hero-image">
+
+        <div class="note">
+            <strong>💡 Chef's Tip:</strong> For a creamier curry, add 2 tablespoons of cream in the final step. Adjust spice levels according to your preference!
+        </div>
+    </div>
+</body>
+</html>

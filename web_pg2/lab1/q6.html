@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Life Feedback Survey</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0F2027 0%, #203A43 50%, #2C5364 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        .survey-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #2C5364;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 1.05em;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="number"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #2C5364;
+            box-shadow: 0 0 0 3px rgba(44, 83, 100, 0.1);
+        }
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .radio-group,
+        .checkbox-group {
+            margin-top: 10px;
+        }
+        .radio-option,
+        .checkbox-option {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .radio-option label,
+        .checkbox-option label {
+            margin: 0;
+            font-weight: normal;
+            cursor: pointer;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #0F2027 0%, #2C5364 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(44, 83, 100, 0.4);
+        }
+        .reset-btn {
+            width: 100%;
+            padding: 12px;
+            background: #e0e0e0;
+            color: #333;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        .reset-btn:hover {
+            background: #bdbdbd;
+        }
+        .required {
+            color: #e74c3c;
+        }
+        .section-title {
+            color: #2C5364;
+            font-size: 1.3em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #2C5364;
+            padding-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="survey-container">
+        <h1>📝 Campus Life Feedback</h1>
+        <p class="subtitle">Help us improve your college experience</p>
+
+        <form action="#" method="post">
+            <!-- Personal Information -->
+            <div class="section-title">Personal Information</div>
+
+            <div class="form-group">
+                <label for="fullname">Full Name <span class="required">*</span></label>
+                <input type="text" id="fullname" name="fullname" required placeholder="Enter your full name">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required placeholder="your.email@college.edu">
+            </div>
+
+            <div class="form-group">
+                <label for="year">Current Year <span class="required">*</span></label>
+                <select id="year" name="year" required>
+                    <option value="">-- Select Year --</option>
+                    <option value="first">First Year</option>
+                    <option value="second">Second Year</option>
+                    <option value="third">Third Year</option>
+                    <option value="fourth">Fourth Year</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="department">Department/Branch <span class="required">*</span></label>
+                <select id="department" name="department" required>
+                    <option value="">-- Select Department --</option>
+                    <option value="cs">Computer Science</option>
+                    <option value="ai">Artificial Intelligence & ML</option>
+                    <option value="it">Information Technology</option>
+                    <option value="ece">Electronics & Communication</option>
+                    <option value="mech">Mechanical Engineering</option>
+                    <option value="civil">Civil Engineering</option>
+                </select>
+            </div>
+
+            <!-- Academic Feedback -->
+            <div class="section-title">Academic Experience</div>
+
+            <div class="form-group">
+                <label>How would you rate the quality of teaching? <span class="required">*</span></label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="excellent" name="teaching_quality" value="excellent" required>
+                        <label for="excellent">Excellent</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="good" name="teaching_quality" value="good">
+                        <label for="good">Good</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="average" name="teaching_quality" value="average">
+                        <label for="average">Average</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="poor" name="teaching_quality" value="poor">
+                        <label for="poor">Needs Improvement</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="study_hours">Average Daily Study Hours</label>
+                <input type="number" id="study_hours" name="study_hours" min="0" max="24" placeholder="Hours per day">
+            </div>
+
+            <!-- Campus Facilities -->
+            <div class="section-title">Campus Facilities</div>
+
+            <div class="form-group">
+                <label>Which facilities do you use regularly? <span class="required">*</span></label>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="library" name="facilities" value="library">
+                        <label for="library">Library</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="lab" name="facilities" value="lab">
+                        <label for="lab">Computer Lab</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="sports" name="facilities" value="sports">
+                        <label for="sports">Sports Complex</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="canteen" name="facilities" value="canteen">
+                        <label for="canteen">Canteen</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="auditorium" name="facilities" value="auditorium">
+                        <label for="auditorium">Auditorium</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overall Satisfaction -->
+            <div class="section-title">Overall Feedback</div>
+
+            <div class="form-group">
+                <label for="satisfaction">Overall Satisfaction (1-10) <span class="required">*</span></label>
+                <input type="number" id="satisfaction" name="satisfaction" min="1" max="10" required 
+                       placeholder="Rate from 1 (lowest) to 10 (highest)">
+            </div>
+
+            <div class="form-group">
+                <label for="suggestions">Suggestions for Improvement</label>
+                <textarea id="suggestions" name="suggestions" 
+                          placeholder="Share your thoughts on how we can improve campus life..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Feedback</button>
+            <button type="reset" class="reset-btn">Clear Form</button>
+        </form>
+    </div>
+</body>
+</html>

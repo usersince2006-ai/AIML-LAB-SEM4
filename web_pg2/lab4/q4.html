@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Changer - JavaScript Events</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2C3E50 0%, #4CA1AF 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 60px 80px;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 40px;
+        }
+        .color-box {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+        .color-box:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        .color-box:active {
+            transform: scale(0.98);
+        }
+        .button-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        button {
+            flex: 1;
+            min-width: 150px;
+            background: linear-gradient(135deg, #2C3E50 0%, #4CA1AF 100%);
+            color: white;
+            border: none;
+            padding: 18px 30px;
+            font-size: 1.2em;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(44, 62, 80, 0.4);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        #colorCode {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f0f2f5;
+            border-radius: 10px;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 30px;
+            }
+            .color-box {
+                height: 250px;
+                font-size: 1.5em;
+            }
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Color Changer</h1>
+        <p class="subtitle">JavaScript Event-Driven Programming</p>
+        
+        <div class="color-box" id="colorBox" 
+             onmouseover="showHoverEffect()" 
+             onmouseout="hideHoverEffect()"
+             onclick="changeColor()">
+            Hover & Click Me! 🖱️
+        </div>
+        
+        <div class="button-group">
+            <button onclick="changeColor()">🔀 Random Color</button>
+            <button onclick="resetColor()">🔄 Reset</button>
+        </div>
+        
+        <div id="colorCode">#667eea → #764ba2</div>
+    </div>
+
+    <script>
+        const defaultGradient = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+        let currentColor = '#667eea';
+        
+        function getRandomColor() {
+            return '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+        }
+        
+        function changeColor() {
+            const color1 = getRandomColor();
+            const color2 = getRandomColor();
+            const gradient = `linear-gradient(135deg, ${color1} 0%, ${color2} 100%)`;
+            
+            const box = document.getElementById('colorBox');
+            box.style.background = gradient;
+            currentColor = color1;
+            
+            document.getElementById('colorCode').textContent = `${color1} → ${color2}`;
+        }
+        
+        function resetColor() {
+            const box = document.getElementById('colorBox');
+            box.style.background = defaultGradient;
+            document.getElementById('colorCode').textContent = '#667eea → #764ba2';
+        }
+        
+        function showHoverEffect() {
+            const box = document.getElementById('colorBox');
+            box.textContent = '🎯 Click for Random Colors!';
+        }
+        
+        function hideHoverEffect() {
+            const box = document.getElementById('colorBox');
+            box.textContent = 'Hover & Click Me! 🖱️';
+        }
+    </script>
+</body>
+</html>

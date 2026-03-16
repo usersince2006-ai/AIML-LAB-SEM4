@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Daily Tech Tribune</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Georgia', serif;
+            background: #f5f5f5;
+            padding: 30px;
+        }
+        .newspaper-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .title {
+            text-align: center;
+            border-bottom: 4px double #2c3e50;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .title h1 {
+            font-size: 4em;
+            font-family: 'Times New Roman', serif;
+            color: #2c3e50;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            font-style: italic;
+        }
+        article h2 {
+            font-size: 2em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+        article p {
+            line-height: 1.8;
+            color: #34495e;
+            margin-bottom: 15px;
+            text-align: justify;
+            font-size: 1.05em;
+        }
+        .feature-article {
+            column-count: 2;
+            column-gap: 40px;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        .feature-article h2 {
+            column-span: all;
+            font-size: 2.5em;
+            color: #e74c3c;
+        }
+        .cover-image {
+            width: 100%;
+            margin: 30px 0;
+        }
+        .cover-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .cover-image figcaption {
+            text-align: center;
+            font-style: italic;
+            color: #7f8c8d;
+            margin-top: 10px;
+            font-size: 0.95em;
+        }
+        .secondary-article {
+            margin: 30px 0;
+            padding: 30px 0;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        .secondary-article h2 {
+            color: #3498db;
+        }
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .small-article {
+            padding: 20px;
+            background: #f8f9fa;
+            border-left: 4px solid #27ae60;
+            border-radius: 5px;
+        }
+        .small-article h3 {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .small-article p {
+            font-size: 1em;
+        }
+        .quote-box {
+            background: #ecf0f1;
+            border-left: 5px solid #e74c3c;
+            padding: 20px;
+            margin: 20px 0;
+            font-style: italic;
+            font-size: 1.2em;
+            color: #2c3e50;
+        }
+        @media (max-width: 768px) {
+            .feature-article {
+                column-count: 1;
+            }
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+            .title h1 {
+                font-size: 2.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="newspaper-layout">
+        <!-- Header/Title -->
+        <header class="title">
+            <h1>📰 The Daily Tech Tribune</h1>
+            <p class="subtitle">Breaking News in Technology | Thursday, March 5, 2026</p>
+        </header>
+
+        <!-- Feature Article -->
+        <article class="feature-article">
+            <h2>AI Revolution Transforms Global Industries</h2>
+            <p>Artificial Intelligence continues to reshape the landscape of modern business and technology. Companies worldwide are reporting unprecedented efficiency gains through the implementation of advanced machine learning systems. Industry experts predict that AI-driven automation will create millions of new jobs while transforming traditional roles across all sectors.</p>
+            <p>The impact extends beyond business, with healthcare, education, and scientific research seeing remarkable breakthroughs. Machine learning algorithms are now capable of diagnosing diseases with accuracy rivaling human specialists, while educational AI tutors provide personalized learning experiences to students globally.</p>
+            <p>"We're witnessing a fundamental shift in how humans interact with technology," says Dr. Sarah Chen, leading AI researcher at Stanford University. "The integration of AI into everyday life is no longer science fiction—it's our present reality."</p>
+            <p>Major corporations have invested over $500 billion in AI research and development over the past year alone. This massive investment has yielded remarkable results, from natural language processing systems that understand context and nuance to computer vision algorithms that surpass human accuracy in medical imaging analysis.</p>
+        </article>
+
+        <!-- Cover Image -->
+        <figure class="cover-image">
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80" alt="AI Technology">
+            <figcaption>AI-powered systems are revolutionizing industries worldwide</figcaption>
+        </figure>
+
+        <!-- Quote Box -->
+        <div class="quote-box">
+            "We're witnessing a fundamental shift in how humans interact with technology. The integration of AI into everyday life is no longer science fiction—it's our present reality."
+            <br><strong>— Dr. Sarah Chen, Stanford University</strong>
+        </div>
+
+        <!-- Secondary Article -->
+        <article class="secondary-article">
+            <h2>Quantum Computing Reaches New Milestone</h2>
+            <p>Scientists at MIT have announced a breakthrough in quantum computing stability, maintaining quantum coherence for a record-breaking 10 minutes. This achievement brings practical quantum computers significantly closer to reality, with potential applications in cryptography, drug discovery, and climate modeling.</p>
+            <p>The research team utilized a novel approach to error correction, effectively neutralizing one of quantum computing's biggest challenges. "This is a game-changer," explains lead researcher Dr. James Morrison. "We're moving from theoretical possibility to practical implementation much faster than anticipated."</p>
+            <p>Major tech companies including Google, IBM, and Microsoft have already expressed interest in collaborating on the next phase of development. Industry analysts predict commercial quantum computers could be available within the next five years, potentially revolutionizing fields from pharmaceutical research to financial modeling.</p>
+        </article>
+
+        <!-- Small Articles Grid -->
+        <div class="articles-grid">
+            <article class="small-article">
+                <h3>🚀 SpaceX Launches Record Mission</h3>
+                <p>SpaceX successfully launched its 50th mission of the year, setting a new industry record. The mission deployed 60 satellites for the expanding Starlink network, bringing high-speed internet to remote regions worldwide.</p>
+                <p>CEO Elon Musk announced plans for weekly launches throughout 2026, with ambitious goals for Mars exploration beginning in 2028.</p>
+            </article>
+
+            <article class="small-article">
+                <h3>💊 Breakthrough in Cancer Treatment</h3>
+                <p>Researchers have developed a new immunotherapy treatment showing 85% success rate in clinical trials for previously untreatable cancers. The treatment harnesses the body's immune system to target cancer cells with unprecedented precision.</p>
+                <p>FDA approval is expected by the end of the year, offering new hope to millions of patients worldwide.</p>
+            </article>
+
+            <article class="small-article">
+                <h3>🌍 Climate Tech Investments Soar</h3>
+                <p>Global investments in climate technology reached $150 billion in Q1 2026, marking a 300% increase from last year. Renewable energy, carbon capture, and sustainable agriculture lead the funding surge.</p>
+                <p>Analysts predict climate tech will become the fastest-growing sector by 2030.</p>
+            </article>
+
+            <article class="small-article">
+                <h3>📱 5G Coverage Reaches 80% Globally</h3>
+                <p>Telecommunications companies report that 5G network coverage now reaches 80% of the global population. The milestone marks a new era in connectivity, enabling IoT, autonomous vehicles, and smart cities at scale.</p>
+                <p>6G research has already begun, promising speeds 100x faster than current 5G networks.</p>
+            </article>
+        </div>
+    </main>
+</body>
+</html>

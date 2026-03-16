@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Portfolio Components</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f5f7fa; }
+        .header { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 60px 20px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.15); }
+        .header h1 { font-size: 3em; margin-bottom: 10px; }
+        .header p { font-size: 1.3em; opacity: 0.95; }
+        .section { max-width: 1000px; margin: 40px auto; padding: 35px; background: white; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.08); }
+        .section h2 { color: #f5576c; border-bottom: 3px solid #f093fb; padding-bottom: 12px; margin-bottom: 25px; font-size: 2em; }
+        .section p { line-height: 1.8; color: #555; font-size: 1.1em; }
+        .skills-grid { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 10px; }
+        .skill-badge { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 12px 24px; border-radius: 25px; font-size: 1em; font-weight: 600; box-shadow: 0 3px 10px rgba(245, 87, 108, 0.3); transition: transform 0.3s ease; }
+        .skill-badge:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4); }
+        .project-card { border: 2px solid #f0f2f5; border-radius: 12px; padding: 25px; margin: 15px 0; transition: all 0.3s ease; }
+        .project-card:hover { border-color: #f093fb; transform: translateY(-5px); box-shadow: 0 8px 25px rgba(240, 147, 251, 0.2); }
+        .project-card h3 { color: #2c3e50; font-size: 1.5em; margin-bottom: 10px; }
+        .project-card p { color: #666; margin: 10px 0; line-height: 1.6; }
+        .project-card small { color: #f5576c; font-weight: 600; background: #ffe5ec; padding: 5px 12px; border-radius: 8px; }
+        .footer { text-align: center; padding: 30px; background: #2c3e50; color: white; margin-top: 40px; font-size: 1.1em; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        // Functional Component: Header
+        function Header({ name, title }) {
+            return (
+                <header className="header">
+                    <h1>👨‍💻 {name}</h1>
+                    <p>{title}</p>
+                </header>
+            );
+        }
+        
+        // Functional Component: About
+        function About() {
+            return (
+                <section className="section">
+                    <h2>📖 About Me</h2>
+                    <p>I am a second-year AIML engineering student at SFIT, passionate about machine learning, web development, and building intelligent systems. My journey combines academic excellence with hands-on projects that solve real-world problems.</p>
+                </section>
+            );
+        }
+        
+        // Functional Component: Skills
+        function Skills({ skills }) {
+            return (
+                <section className="section">
+                    <h2>🚀 Skills</h2>
+                    <div className="skills-grid">
+                        {skills.map((skill, i) => <span key={i} className="skill-badge">{skill}</span>)}
+                    </div>
+                </section>
+            );
+        }
+        
+        // Class Component: Projects
+        class Projects extends React.Component {
+            render() {
+                return (
+                    <section className="section">
+                        <h2>💼 Projects</h2>
+                        {this.props.projects.map((proj, i) => (
+                            <div key={i} className="project-card">
+                                <h3>{proj.name}</h3>
+                                <p>{proj.description}</p>
+                                <small>💻 Tech: {proj.tech}</small>
+                            </div>
+                        ))}
+                    </section>
+                );
+            }
+        }
+        
+        // Functional Component: Footer
+        function Footer() {
+            return <footer className="footer"><p>© 2026 Tony Rodrigues | Built with React ⚛️</p></footer>;
+        }
+        
+        // Main App
+        function App() {
+            const skills = ['Python', 'Machine Learning', 'React', 'HTML/CSS', 'JavaScript', 'SQL', 'NumPy', 'Pandas', 'TensorFlow', 'Git'];
+            const projects = [
+                { name: 'Disease Predictor', description: 'ML-based disease prediction system using Naive Bayes and Neural Networks with 92% accuracy.', tech: 'Python, Scikit-learn, Flask' },
+                { name: 'Portfolio Website', description: 'Responsive personal portfolio built with React components and modern design principles.', tech: 'React, HTML, CSS, JavaScript' },
+                { name: 'Data Pipeline', description: 'End-to-end ML pipeline with data preprocessing, feature engineering, and model evaluation.', tech: 'Python, Pandas, Sklearn, Matplotlib' }
+            ];
+            
+            return (
+                <div>
+                    <Header name="Tony Rodrigues" title="SE AIML Student | Web Developer | ML Enthusiast" />
+                    <About />
+                    <Skills skills={skills} />
+                    <Projects projects={projects} />
+                    <Footer />
+                </div>
+            );
+        }
+        
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+</html>
