@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 11 - MongoDB + Express + React</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f8f9fa;
+            color: #212529;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+            color: white;
+            padding: 22px 30px;
+            text-align: center;
+        }
+
+        .header h1 { font-size: 1.7rem; margin-bottom: 5px; }
+        .header p { font-size: 0.9rem; opacity: 0.9; }
+
+        .arch-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: #e9ecef;
+            flex-wrap: wrap;
+        }
+
+        .arch-item {
+            background: white;
+            border: 2px solid;
+            border-radius: 8px;
+            padding: 8px 18px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .arch-item.react  { border-color: #61dafb; color: #0d6efd; }
+        .arch-item.express{ border-color: #68a063; color: #198754; }
+        .arch-item.mongo  { border-color: #4db33d; color: #157347; }
+        .arch-arrow { color: #6c757d; font-size: 1.2rem; }
+
+        .container {
+            max-width: 1100px;
+            margin: 25px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media(max-width:700px) { .container { grid-template-columns: 1fr; } }
+
+        .panel {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+        }
+
+        .panel h3 {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: #343a40;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .code-block {
+            background: #212529;
+            color: #e9ecef;
+            border-radius: 8px;
+            padding: 14px;
+            font-family: monospace;
+            font-size: 0.8rem;
+            line-height: 1.65;
+            overflow-x: auto;
+            white-space: pre;
+        }
+
+        .kw  { color: #c084fc; }
+        .fn  { color: #93c5fd; }
+        .str { color: #86efac; }
+        .cm  { color: #6b7280; }
+        .num { color: #fdba74; }
+
+        /* Form */
+        .form-panel { grid-column: 1 / -1; }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        @media(max-width:600px) { .form-grid { grid-template-columns: 1fr; } }
+
+        .form-group label {
+            display: block;
+            font-size: 0.82rem;
+            color: #6c757d;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1.5px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
+            outline: none;
+        }
+
+        .form-group input:focus { border-color: #11998e; }
+
+        .btn {
+            padding: 9px 22px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .btn-add { background: #11998e; color: white; }
+        .btn-add:hover { background: #0d7a6f; }
+
+        .btn-clear { background: #6c757d; color: white; margin-left: 8px; }
+        .btn-clear:hover { background: #5a6268; }
+
+        .btn-delete {
+            background: none;
+            border: none;
+            color: #dc3545;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .btn-delete:hover { background: #fff5f5; }
+
+        /* Table */
+        .users-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .users-table th {
+            background: #f8f9fa;
+            padding: 10px 14px;
+            text-align: left;
+            font-size: 0.85rem;
+            color: #495057;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .users-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #f1f3f5;
+            font-size: 0.88rem;
+        }
+
+        .users-table tr:hover td { background: #f8f9fa; }
+
+        .empty-msg {
+            text-align: center;
+            padding: 30px;
+            color: #adb5bd;
+            font-style: italic;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        .badge-saved { background: #d1fae5; color: #065f46; }
+        .badge-local { background: #fef3c7; color: #92400e; }
+
+        .api-info {
+            grid-column: 1 / -1;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            font-size: 0.83rem;
+            color: #6c757d;
+        }
+
+        .api-info strong { color: #343a40; }
+
+        .api-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .method { font-weight: bold; padding: 2px 8px; border-radius: 4px; font-size: 0.78rem; }
+        .m-get  { background: #d1fae5; color: #065f46; }
+        .m-post { background: #fef3c7; color: #92400e; }
+        .m-del  { background: #fee2e2; color: #991b1b; }
+    </style>
+</head>
+<body>
+
+<!-- Architecture bar -->
+<div class="header">
+    <h1>Experiment 11: Database Integration using MongoDB</h1>
+    <p>Node.js + Express backend · Mongoose ODM · React frontend · REST API</p>
+</div>
+
+<div class="arch-bar">
+    <div class="arch-item react">⚛ React Frontend</div>
+    <span class="arch-arrow">⟷</span>
+    <div class="arch-item express">🟢 Express Backend</div>
+    <span class="arch-arrow">⟷</span>
+    <div class="arch-item mongo">🍃 MongoDB Database</div>
+</div>
+
+<div id="root"></div>
+
+<script type="text/babel">
+    const { useState } = React;
+
+    // ── Simulated MongoDB store ──────────────────────────────
+    let nextId = 1;
+    const dbStore = [];
+
+    // Simulate API calls (actual app uses Express routes)
+    const api = {
+        getUsers: () => Promise.resolve([...dbStore]),
+        createUser: (data) => {
+            const user = { _id: `507f${nextId++}`, ...data, createdAt: new Date().toLocaleString() };
+            dbStore.push(user);
+            return Promise.resolve(user);
+        },
+        deleteUser: (id) => {
+            const idx = dbStore.findIndex(u => u._id === id);
+            if (idx !== -1) dbStore.splice(idx, 1);
+            return Promise.resolve({ deleted: true });
+        }
+    };
+
+    // ── App Component ────────────────────────────────────────
+    function App() {
+        const [users, setUsers] = useState([]);
+        const [form, setForm] = useState({ name: '', email: '', age: '' });
+        const [errors, setErrors] = useState({});
+        const [loaded, setLoaded] = useState(false);
+
+        const validate = () => {
+            const errs = {};
+            if (!form.name.trim()) errs.name = 'Required';
+            if (!form.email.includes('@')) errs.email = 'Valid email required';
+            if (!form.age || form.age < 1 || form.age > 120) errs.age = 'Age 1–120';
+            setErrors(errs);
+            return Object.keys(errs).length === 0;
+        };
+
+        const loadUsers = async () => {
+            const data = await api.getUsers();
+            setUsers(data);
+            setLoaded(true);
+        };
+
+        const handleAdd = async () => {
+            if (!validate()) return;
+            await api.createUser({ ...form, age: parseInt(form.age) });
+            const data = await api.getUsers();
+            setUsers(data);
+            setForm({ name: '', email: '', age: '' });
+            setErrors({});
+        };
+
+        const handleDelete = async (id) => {
+            await api.deleteUser(id);
+            setUsers(prev => prev.filter(u => u._id !== id));
+        };
+
+        return (
+            <div style={{maxWidth:1100,margin:'0 auto',padding:'20px'}}>
+
+                {/* Code panels grid */}
+                <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:20,marginBottom:20}}>
+
+                    {/* Mongoose schema */}
+                    <div style={{background:'white',borderRadius:12,padding:20,boxShadow:'0 2px 10px rgba(0,0,0,.07)'}}>
+                        <h3 style={{marginBottom:14,color:'#343a40'}}>🍃 Mongoose Schema (models/User.js)</h3>
+                        <div className="code-block">
+{`<span class="kw">const</span> mongoose = <span class="fn">require</span>(<span class="str">'mongoose'</span>);
+
+<span class="cm">// Define User schema</span>
+<span class="kw">const</span> userSchema = <span class="kw">new</span> mongoose.<span class="fn">Schema</span>({
+  name:  { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  age:   { type: Number, required: true }
+}, { timestamps: true });
+
+<span class="cm">// Create model from schema</span>
+<span class="kw">const</span> User = mongoose.<span class="fn">model</span>(<span class="str">'User'</span>, userSchema);
+
+module.exports = User;`}
+                        </div>
+                    </div>
+
+                    {/* Express routes */}
+                    <div style={{background:'white',borderRadius:12,padding:20,boxShadow:'0 2px 10px rgba(0,0,0,.07)'}}>
+                        <h3 style={{marginBottom:14,color:'#343a40'}}>🟢 Express Routes (routes/users.js)</h3>
+                        <div className="code-block">
+{`<span class="kw">const</span> router = require(<span class="str">'express'</span>).<span class="fn">Router</span>();
+<span class="kw">const</span> User = require(<span class="str">'../models/User'</span>);
+
+<span class="cm">// GET all users</span>
+router.<span class="fn">get</span>(<span class="str">'/'</span>, <span class="kw">async</span> (req, res) => {
+  <span class="kw">const</span> users = <span class="kw">await</span> User.<span class="fn">find</span>();
+  res.<span class="fn">json</span>(users);
+});
+
+<span class="cm">// POST create user</span>
+router.<span class="fn">post</span>(<span class="str">'/'</span>, <span class="kw">async</span> (req, res) => {
+  <span class="kw">const</span> user = <span class="kw">new</span> <span class="fn">User</span>(req.body);
+  <span class="kw">await</span> user.<span class="fn">save</span>();
+  res.<span class="fn">status</span>(<span class="num">201</span>).<span class="fn">json</span>(user);
+});
+
+<span class="cm">// DELETE user by id</span>
+router.<span class="fn">delete</span>(<span class="str">'/:id'</span>, <span class="kw">async</span> (req, res) => {
+  <span class="kw">await</span> User.<span class="fn">findByIdAndDelete</span>(req.params.id);
+  res.<span class="fn">json</span>({ deleted: true });
+});`}
+                        </div>
+                    </div>
+                </div>
+
+                {/* User management panel */}
+                <div style={{background:'white',borderRadius:12,padding:20,boxShadow:'0 2px 10px rgba(0,0,0,.07)',marginBottom:20}}>
+                    <h3 style={{marginBottom:16,color:'#343a40'}}>👥 User Management (React Frontend)</h3>
+
+                    {/* Add User Form */}
+                    <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 0.6fr auto',gap:12,marginBottom:16,alignItems:'end'}}>
+                        <div>
+                            <label style={{display:'block',fontSize:'0.82rem',color:'#6c757d',marginBottom:4}}>Name *</label>
+                            <input
+                                style={{width:'100%',padding:'9px 12px',border:`1.5px solid ${errors.name?'#dc3545':'#dee2e6'}`,borderRadius:6,fontSize:'0.9rem',outline:'none'}}
+                                value={form.name}
+                                onChange={e=>setForm({...form,name:e.target.value})}
+                                placeholder="Anthony Rodrigues"
+                            />
+                            {errors.name && <span style={{color:'#dc3545',fontSize:'0.75rem'}}>{errors.name}</span>}
+                        </div>
+                        <div>
+                            <label style={{display:'block',fontSize:'0.82rem',color:'#6c757d',marginBottom:4}}>Email *</label>
+                            <input
+                                style={{width:'100%',padding:'9px 12px',border:`1.5px solid ${errors.email?'#dc3545':'#dee2e6'}`,borderRadius:6,fontSize:'0.9rem',outline:'none'}}
+                                value={form.email}
+                                onChange={e=>setForm({...form,email:e.target.value})}
+                                placeholder="user@example.com"
+                            />
+                            {errors.email && <span style={{color:'#dc3545',fontSize:'0.75rem'}}>{errors.email}</span>}
+                        </div>
+                        <div>
+                            <label style={{display:'block',fontSize:'0.82rem',color:'#6c757d',marginBottom:4}}>Age *</label>
+                            <input
+                                type="number"
+                                style={{width:'100%',padding:'9px 12px',border:`1.5px solid ${errors.age?'#dc3545':'#dee2e6'}`,borderRadius:6,fontSize:'0.9rem',outline:'none'}}
+                                value={form.age}
+                                onChange={e=>setForm({...form,age:e.target.value})}
+                                placeholder="20"
+                            />
+                            {errors.age && <span style={{color:'#dc3545',fontSize:'0.75rem'}}>{errors.age}</span>}
+                        </div>
+                        <div style={{display:'flex',gap:8}}>
+                            <button className="btn btn-add" onClick={handleAdd}>+ Add</button>
+                            {!loaded && <button className="btn" style={{background:'#0d6efd',color:'white'}} onClick={loadUsers}>Load DB</button>}
+                        </div>
+                    </div>
+
+                    {/* Users Table */}
+                    {users.length > 0 ? (
+                        <table className="users-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>MongoDB _id</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Age</th>
+                                    <th>Created At</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {users.map((u, i) => (
+                                    <tr key={u._id}>
+                                        <td>{i+1}</td>
+                                        <td style={{fontFamily:'monospace',fontSize:'0.78rem',color:'#6c757d'}}>{u._id}</td>
+                                        <td><strong>{u.name}</strong></td>
+                                        <td>{u.email}</td>
+                                        <td>{u.age}</td>
+                                        <td style={{fontSize:'0.8rem',color:'#6c757d'}}>{u.createdAt}</td>
+                                        <td>
+                                            <button className="btn-delete" onClick={()=>handleDelete(u._id)}>🗑</button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    ) : (
+                        <div className="empty-msg">No users yet. Add a user or click "Load DB".</div>
+                    )}
+                </div>
+
+                {/* API endpoints reference */}
+                <div style={{background:'#f8f9fa',borderRadius:8,padding:15,fontSize:'0.83rem',color:'#6c757d'}}>
+                    <strong style={{color:'#343a40',display:'block',marginBottom:10}}>REST API Endpoints (Express server)</strong>
+                    <div style={{display:'flex',gap:8,alignItems:'center',marginBottom:6}}>
+                        <span className="method m-get">GET</span>
+                        <code>/api/users</code>
+                        <span>— Retrieve all users from MongoDB</span>
+                    </div>
+                    <div style={{display:'flex',gap:8,alignItems:'center',marginBottom:6}}>
+                        <span className="method m-post">POST</span>
+                        <code>/api/users</code>
+                        <span>— Create new user (body: name, email, age)</span>
+                    </div>
+                    <div style={{display:'flex',gap:8,alignItems:'center'}}>
+                        <span className="method m-del">DELETE</span>
+                        <code>/api/users/:id</code>
+                        <span>— Delete user by MongoDB ObjectId</span>
+                    </div>
+                </div>
+
+            </div>
+        );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 10 - Express.js Backend Demo</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #1e1e2e;
+            color: #cdd6f4;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #181825, #313244);
+            padding: 25px 30px;
+            border-bottom: 2px solid #45475a;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.7rem;
+            color: #cba6f7;
+            margin-bottom: 5px;
+        }
+
+        .header p { color: #a6adc8; font-size: 0.9rem; }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media(max-width: 700px) { .container { grid-template-columns: 1fr; } }
+
+        .card {
+            background: #313244;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #45475a;
+        }
+
+        .card h3 {
+            color: #89dceb;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Code block */
+        .code-block {
+            background: #181825;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.82rem;
+            line-height: 1.7;
+            overflow-x: auto;
+            border: 1px solid #45475a;
+            white-space: pre;
+        }
+
+        .kw  { color: #cba6f7; }   /* keywords */
+        .fn  { color: #89b4fa; }   /* functions */
+        .str { color: #a6e3a1; }   /* strings */
+        .cm  { color: #6c7086; }   /* comments */
+        .num { color: #fab387; }   /* numbers */
+        .obj { color: #f38ba8; }   /* objects */
+
+        /* API Tester */
+        .api-tester {
+            grid-column: 1 / -1;
+        }
+
+        .endpoint-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .method-badge {
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .get  { background: #a6e3a1; color: #1e1e2e; }
+        .post { background: #fab387; color: #1e1e2e; }
+
+        .endpoint-path {
+            flex: 1;
+            background: #181825;
+            border: 1px solid #45475a;
+            color: #cdd6f4;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            padding: 6px 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .btn-send { background: #89b4fa; color: #1e1e2e; }
+        .btn-send:hover { background: #74c7ec; }
+
+        .response-box {
+            background: #181825;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            min-height: 60px;
+            border: 1px solid #45475a;
+            white-space: pre-wrap;
+            color: #a6e3a1;
+            margin-top: 5px;
+        }
+
+        .response-label {
+            font-size: 0.8rem;
+            color: #6c7086;
+            margin-bottom: 4px;
+        }
+
+        /* Flow diagram */
+        .flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding: 15px 0;
+        }
+
+        .flow-box {
+            background: #181825;
+            border: 2px solid #89b4fa;
+            border-radius: 8px;
+            padding: 10px 16px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #89b4fa;
+        }
+
+        .flow-arrow { color: #cba6f7; font-size: 1.3rem; }
+
+        /* Theory list */
+        .theory-list {
+            list-style: none;
+            line-height: 2;
+        }
+
+        .theory-list li::before {
+            content: '▶ ';
+            color: #cba6f7;
+        }
+
+        .theory-list li { font-size: 0.88rem; color: #a6adc8; }
+        .theory-list strong { color: #cdd6f4; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Experiment 10: Express.js Backend</h1>
+    <p>Hello World API · Routing · Middleware · nodemon workflow</p>
+</div>
+
+<div class="container">
+
+    <!-- Express.js Setup Code -->
+    <div class="card">
+        <h3>⚙️ Express.js Setup (server.js)</h3>
+        <div class="code-block"><span class="cm">// server.js — Basic Express server</span>
+<span class="kw">const</span> express = <span class="fn">require</span>(<span class="str">'express'</span>);
+<span class="kw">const</span> app = <span class="fn">express</span>();
+<span class="kw">const</span> PORT = <span class="num">3000</span>;
+
+<span class="cm">// Middleware: parse JSON request bodies</span>
+app.<span class="fn">use</span>(express.<span class="fn">json</span>());
+
+<span class="cm">// Logging middleware (custom)</span>
+app.<span class="fn">use</span>((<span class="obj">req</span>, <span class="obj">res</span>, next) => {
+  console.<span class="fn">log</span>(`${req.method} ${req.url}`);
+  <span class="fn">next</span>();
+});
+
+<span class="cm">// Route: GET / → Hello World</span>
+app.<span class="fn">get</span>(<span class="str">'/'</span>, (<span class="obj">req</span>, <span class="obj">res</span>) => {
+  res.<span class="fn">json</span>({ message: <span class="str">'Hello, World!'</span> });
+});
+
+<span class="cm">// Route: GET /api → API info</span>
+app.<span class="fn">get</span>(<span class="str">'/api'</span>, (<span class="obj">req</span>, <span class="obj">res</span>) => {
+  res.<span class="fn">json</span>({ 
+    status: <span class="str">'running'</span>,
+    version: <span class="str">'1.0.0'</span>,
+    endpoints: [<span class="str">'/'</span>, <span class="str">'/api'</span>, <span class="str">'/api/greet'</span>]
+  });
+});
+
+<span class="cm">// Route: GET /api/greet?name=Tony</span>
+app.<span class="fn">get</span>(<span class="str">'/api/greet'</span>, (<span class="obj">req</span>, <span class="obj">res</span>) => {
+  <span class="kw">const</span> name = req.query.name || <span class="str">'World'</span>;
+  res.<span class="fn">json</span>({ message: `Hello, ${name}!` });
+});
+
+<span class="cm">// Start server</span>
+app.<span class="fn">listen</span>(PORT, () => {
+  console.<span class="fn">log</span>(`Server running on port ${PORT}`);
+});</div>
+    </div>
+
+    <!-- Theory -->
+    <div class="card">
+        <h3>📚 Key Concepts</h3>
+        <ul class="theory-list">
+            <li><strong>Node.js:</strong> JavaScript runtime on server-side (V8 engine)</li>
+            <li><strong>Express.js:</strong> Minimal framework for routing & middleware</li>
+            <li><strong>Route:</strong> Maps URL + HTTP method → handler function</li>
+            <li><strong>Middleware:</strong> Functions that run between request & response</li>
+            <li><strong>nodemon:</strong> Auto-restarts server on file change during dev</li>
+            <li><strong>res.json():</strong> Sends JSON response with correct headers</li>
+            <li><strong>req.query:</strong> URL query parameters (?key=value)</li>
+            <li><strong>req.body:</strong> POST request body (needs express.json())</li>
+        </ul>
+
+        <br/>
+
+        <!-- Request flow -->
+        <h3>🔄 Request Flow</h3>
+        <div class="flow">
+            <div class="flow-box">Browser<br/>(Client)</div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-box">HTTP<br/>Request</div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-box">Middleware<br/>(Logger)</div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-box">Route<br/>Handler</div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-box">JSON<br/>Response</div>
+        </div>
+    </div>
+
+    <!-- package.json -->
+    <div class="card">
+        <h3>📦 package.json</h3>
+        <div class="code-block">{
+  <span class="str">"name"</span>: <span class="str">"express-demo"</span>,
+  <span class="str">"version"</span>: <span class="str">"1.0.0"</span>,
+  <span class="str">"scripts"</span>: {
+    <span class="str">"start"</span>: <span class="str">"node server.js"</span>,
+    <span class="str">"dev"</span>: <span class="str">"nodemon server.js"</span>
+  },
+  <span class="str">"dependencies"</span>: {
+    <span class="str">"express"</span>: <span class="str">"^4.18.2"</span>
+  },
+  <span class="str">"devDependencies"</span>: {
+    <span class="str">"nodemon"</span>: <span class="str">"^3.0.1"</span>
+  }
+}</div>
+
+        <br/>
+
+        <h3>💻 Setup Commands</h3>
+        <div class="code-block"><span class="cm"># 1. Initialize project</span>
+npm init -y
+
+<span class="cm"># 2. Install Express</span>
+npm install express
+
+<span class="cm"># 3. Install nodemon (dev)</span>
+npm install --save-dev nodemon
+
+<span class="cm"># 4. Run with nodemon</span>
+npm run dev
+
+<span class="cm"># 5. Test in browser</span>
+<span class="cm"># http://localhost:3000/</span>
+<span class="cm"># http://localhost:3000/api</span></div>
+    </div>
+
+    <!-- API Tester (simulated) -->
+    <div class="card api-tester">
+        <h3>🧪 Simulated API Tester</h3>
+        <p style="font-size:0.83rem; color:#6c7086; margin-bottom:15px;">
+            Simulates Express.js API responses (actual server runs on Node.js)
+        </p>
+
+        <div id="endpoints"></div>
+        <div class="response-label">Response:</div>
+        <div class="response-box" id="response-output">Click "Send" on any endpoint above...</div>
+    </div>
+
+</div>
+
+<script>
+    // Simulated Express-like responses
+    const endpoints = [
+        { method: 'GET', path: '/', handler: () => ({ message: 'Hello, World!' }) },
+        { method: 'GET', path: '/api', handler: () => ({ status: 'running', version: '1.0.0', endpoints: ['/', '/api', '/api/greet'] }) },
+        { method: 'GET', path: '/api/greet?name=Tony', handler: () => ({ message: 'Hello, Tony!' }) },
+        { method: 'POST', path: '/api/echo', handler: () => ({ received: true, body: { name: 'Tony', roll: 58 }, timestamp: new Date().toISOString() }) },
+    ];
+
+    const container = document.getElementById('endpoints');
+    const output = document.getElementById('response-output');
+
+    endpoints.forEach(ep => {
+        const row = document.createElement('div');
+        row.className = 'endpoint-row';
+        row.innerHTML = `
+            <span class="method-badge ${ep.method.toLowerCase()}">${ep.method}</span>
+            <input class="endpoint-path" value="${ep.path}" readonly/>
+            <button class="btn btn-send" onclick="simulate(${endpoints.indexOf(ep)})">Send</button>
+        `;
+        container.appendChild(row);
+    });
+
+    function simulate(idx) {
+        const ep = endpoints[idx];
+        const result = ep.handler();
+        output.textContent = JSON.stringify(result, null, 2);
+        output.style.color = '#a6e3a1';
+    }
+</script>
+</body>
+</html>
